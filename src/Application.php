@@ -4,6 +4,7 @@ namespace PhpGuru;
 use PhpGuru\Controllers\AuthController;
 use PhpGuru\Controllers\PhonebookController;
 use PhpGuru\Controllers\SettingsController;
+use PhpGuru\Controllers\WebsiteController;
 
 class Application
 {
@@ -23,6 +24,7 @@ class Application
         $auth = new AuthController();
         $phonebook = new PhonebookController();
         $settings = new SettingsController();
+        $websites = new WebsiteController();
 
         // Auth routes
         $this->router->get('/login', [$auth, 'showLogin']);
@@ -36,6 +38,14 @@ class Application
         $this->router->get('/edit', [$phonebook, 'edit']);
         $this->router->post('/edit', [$phonebook, 'update']);
         $this->router->get('/delete', [$phonebook, 'delete']);
+
+        // Website routes (protected)
+        $this->router->get('/websites', [$websites, 'index']);
+        $this->router->get('/websites/add', [$websites, 'add']);
+        $this->router->post('/websites/add', [$websites, 'store']);
+        $this->router->get('/websites/edit', [$websites, 'edit']);
+        $this->router->post('/websites/edit', [$websites, 'update']);
+        $this->router->get('/websites/delete', [$websites, 'delete']);
 
         // Settings routes (protected)
         $this->router->get('/settings', [$settings, 'index']);
