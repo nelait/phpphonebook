@@ -5,6 +5,7 @@ use PhpGuru\Controllers\AppointmentController;
 use PhpGuru\Controllers\AuthController;
 use PhpGuru\Controllers\PhonebookController;
 use PhpGuru\Controllers\SettingsController;
+use PhpGuru\Controllers\StockController;
 use PhpGuru\Controllers\TaskController;
 use PhpGuru\Controllers\WebsiteController;
 
@@ -29,6 +30,7 @@ class Application
         $websites = new WebsiteController();
         $tasks = new TaskController();
         $appointments = new AppointmentController();
+        $stocks = new StockController();
 
         // Auth routes
         $this->router->get('/login', [$auth, 'showLogin']);
@@ -61,6 +63,14 @@ class Application
         $this->router->post('/tasks/edit', [$tasks, 'update']);
         $this->router->get('/tasks/delete', [$tasks, 'delete']);
         $this->router->post('/tasks/toggle', [$tasks, 'toggleComplete']);
+
+        // Stock routes (protected)
+        $this->router->get('/stocks', [$stocks, 'index']);
+        $this->router->get('/stocks/add', [$stocks, 'add']);
+        $this->router->post('/stocks/add', [$stocks, 'store']);
+        $this->router->get('/stocks/edit', [$stocks, 'edit']);
+        $this->router->post('/stocks/edit', [$stocks, 'update']);
+        $this->router->get('/stocks/delete', [$stocks, 'delete']);
 
         // Website routes (protected)
         $this->router->get('/websites', [$websites, 'index']);
