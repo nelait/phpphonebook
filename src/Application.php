@@ -1,6 +1,7 @@
 <?php
 namespace PhpGuru;
 
+use PhpGuru\Controllers\AppointmentController;
 use PhpGuru\Controllers\AuthController;
 use PhpGuru\Controllers\PhonebookController;
 use PhpGuru\Controllers\SettingsController;
@@ -27,6 +28,7 @@ class Application
         $settings = new SettingsController();
         $websites = new WebsiteController();
         $tasks = new TaskController();
+        $appointments = new AppointmentController();
 
         // Auth routes
         $this->router->get('/login', [$auth, 'showLogin']);
@@ -40,6 +42,16 @@ class Application
         $this->router->get('/edit', [$phonebook, 'edit']);
         $this->router->post('/edit', [$phonebook, 'update']);
         $this->router->get('/delete', [$phonebook, 'delete']);
+
+        // Appointment routes (protected)
+        $this->router->get('/appointments', [$appointments, 'index']);
+        $this->router->get('/appointments/add', [$appointments, 'add']);
+        $this->router->post('/appointments/add', [$appointments, 'store']);
+        $this->router->get('/appointments/edit', [$appointments, 'edit']);
+        $this->router->post('/appointments/edit', [$appointments, 'update']);
+        $this->router->get('/appointments/delete', [$appointments, 'delete']);
+        $this->router->get('/appointments/reminders', [$appointments, 'reminders']);
+        $this->router->post('/appointments/mark-reminder-sent', [$appointments, 'markReminderSent']);
 
         // Task routes (protected)
         $this->router->get('/tasks', [$tasks, 'index']);
