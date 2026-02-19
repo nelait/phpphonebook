@@ -29,7 +29,8 @@ $currentTheme = $themeStorage->getTheme();
                 <span class="nav-title">PhoneBook</span>
             </div>
             <div class="nav-links">
-                <a href="/" class="nav-link <?= str_starts_with($_SERVER['REQUEST_URI'], '/') && !str_starts_with($_SERVER['REQUEST_URI'], '/websites') && !str_starts_with($_SERVER['REQUEST_URI'], '/tasks') && !str_starts_with($_SERVER['REQUEST_URI'], '/settings') ? 'active' : '' ?>">Contacts</a>
+                <a href="/" class="nav-link <?= str_starts_with($_SERVER['REQUEST_URI'], '/') && !str_starts_with($_SERVER['REQUEST_URI'], '/websites') && !str_starts_with($_SERVER['REQUEST_URI'], '/tasks') && !str_starts_with($_SERVER['REQUEST_URI'], '/appointments') && !str_starts_with($_SERVER['REQUEST_URI'], '/settings') ? 'active' : '' ?>">Contacts</a>
+                <a href="/appointments" class="nav-link <?= str_starts_with($_SERVER['REQUEST_URI'], '/appointments') ? 'active' : '' ?>">Appointments</a>
                 <a href="/tasks" class="nav-link <?= str_starts_with($_SERVER['REQUEST_URI'], '/tasks') ? 'active' : '' ?>">Tasks</a>
                 <a href="/websites" class="nav-link <?= str_starts_with($_SERVER['REQUEST_URI'], '/websites') ? 'active' : '' ?>">Websites</a>
             </div>
